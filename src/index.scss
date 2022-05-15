@@ -1,5 +1,10 @@
 @import './assets/normalize.css';
 
+//variables color
+$primary-color: rgba(244 224 65);
+$secondary-color: rgba(0 189 211);
+$background-color: rgba(248 248 248);
+
 body {
   margin: 0;
   background: $background-color;
@@ -10,7 +15,4 @@ body {
   line-height: 26px;
 }
 
-//variables color
-$primary-color: rgba(244 224 65);
-$secondary-color: rgba(0 189 211);
-$background-color: rgba(248 248 248);
+

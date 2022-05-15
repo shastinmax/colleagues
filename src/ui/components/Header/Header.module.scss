@@ -1,0 +1,22 @@
+//@import 'src/index';
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+}
+
+.header__wrapper_link {
+  padding: 4px 25px;
+  text-decoration: none;
+  border-radius: 80px;
+  //background: $primary-color;
+  background: #F4E041;
+  margin-left: 10px;
+}
