@@ -7,7 +7,7 @@ import s from './Header.module.scss'
 import logo from 'assets/image/Logo/Logo.svg'
 
 export const Header = () => (
-        <div className={s.container}>
+        <div className='container'>
             <div className={s.header}>
                 <img src={logo} alt="logo"/>
                 <div className={s.header__wrapper}>
