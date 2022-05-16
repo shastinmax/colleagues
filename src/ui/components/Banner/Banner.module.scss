@@ -1,0 +1,48 @@
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.banner {
+  min-height: 650px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &__inner {
+    max-width: 380px;
+    text-align: center;
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 21px;
+  }
+
+  &__descr {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 32px;
+  }
+
+  &__wrapper_link {
+
+  }
+
+  &__link {
+    padding: 4px 25px;
+    text-decoration: none;
+    border-radius: 80px;
+    //background: $primary-color;
+    background: #F4E041;
+
+  }
+}
