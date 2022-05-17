@@ -1,6 +1,6 @@
-import {getUsesAC} from "./usersReducer";
+import {setUsers} from "./usersReducer";
 
-export type GlobalType = ReturnType<typeof getUsesAC>
+export type GlobalActionType = ReturnType<typeof setUsers>
 
 export type UserType = {
     id: string,
@@ -15,13 +15,15 @@ export type UserType = {
 
 export type InitialStateType = {
     success: boolean,
-    page: number,
     total_pages: number,
     total_users: number,
-    count: number,
     links: {
         next_url: string,
         prev_url: null
     },
+    params: {
+        page: number,
+        count: number,
+    }
     users: Array<UserType>
 }
