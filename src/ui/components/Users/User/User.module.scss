@@ -1,0 +1,14 @@
+.user{
+  flex: 0 0 30%;
+  margin: 15px;
+  text-align: center;
+  min-height: 254px;
+  &__avatar{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+  &__name{
+    margin-bottom: 20px;
+  }
+}

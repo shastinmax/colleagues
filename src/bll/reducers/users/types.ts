@@ -1,6 +1,8 @@
-import {setUsers} from "./usersReducer";
+import {setLoading, setUsers, showNextUsers,} from "./usersReducer";
 
 export type GlobalActionType = ReturnType<typeof setUsers>
+    | ReturnType<typeof setLoading>
+    | ReturnType<typeof showNextUsers>
 
 export type UserType = {
     id: string,
@@ -25,5 +27,6 @@ export type InitialStateType = {
         page: number,
         count: number,
     }
-    users: Array<UserType>
+    users: Array<UserType>,
+    loading: boolean
 }

@@ -13,7 +13,6 @@ const App = () => (
     <HashRouter>
         <div className="App">
             <Header/>
-            <Preloader/>
             <Routes>
                 <Route path={PATH.BANNER} element={<Banner/>}/>
                 <Route path={PATH.USERS} element={<Users/>}/>

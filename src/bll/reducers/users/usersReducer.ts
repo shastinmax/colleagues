@@ -16,15 +16,29 @@ const initialState = {
     params: {
         page: 1,
         count: 6,
-    }
+    },
+    loading:false
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: GlobalActionType): InitialStateType => {
     switch (action.type) {
-        case "USERS/GET-USERS": {
+        case "USERS/SET-USERS": {
             return {
                 ...state, ...action.payload.users
             }
+        }
+        case "USER/SET-LOADING":{
+            return {
+                ...state,loading:action.payload.value
+            }
+        }
+        case "USERS/SHOW-NEXT-USERS":{
+            return {
+                ...state,params:{
+                    ...state.params,page:action.payload.page
+                }
+            }
+
         }
         default:
             return state
@@ -33,9 +47,23 @@ export const usersReducer = (state: InitialStateType = initialState, action: Glo
 
 // action
 export const setUsers = (users: UserType) => ({
-        type: 'USERS/GET-USERS',
+        type: 'USERS/SET-USERS',
         payload: {
             users
+        }
+    } as const
+)
+export const setLoading = (value:boolean)=>({
+        type: 'USER/SET-LOADING',
+        payload:{
+            value
+        }
+    }as const
+)
+export const showNextUsers = (page:number) => ({
+        type: 'USERS/SHOW-NEXT-USERS',
+        payload: {
+            page
         }
     } as const
 )
@@ -43,6 +71,7 @@ export const setUsers = (users: UserType) => ({
 // thunk
 
 export const getUsers = (page: number, count: number) => async (dispatch: Dispatch) => {
+    dispatch(setLoading(true))
     try {
         const response = await usersApi.getUsers(page, count)
         dispatch(setUsers(response.data))
@@ -50,5 +79,8 @@ export const getUsers = (page: number, count: number) => async (dispatch: Dispat
 // eslint-disable-next-line no-alert
         alert(err)
     }
-
+finally {
+        dispatch(setLoading(false))
+    }
 }
+
