@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {getUsers, showNextUsers} from "../../../bll/reducers/users/usersReducer";
+import {getUsers, showNextUsers} from "../../../bll/reducers/users/users-reducer";
 import {
     selectCount,
     selectLoading,
@@ -35,7 +35,7 @@ export const Users = () => {
 
     return <div className='container'>
         {loading && <Preloader/>}
-        <h1 className={s.users__title}>Working with GET request</h1>
+        <h1 className='title'>Working with GET request</h1>
         <div className={s.users__wrapper}>
             {users.map(user => (
                 <User key={user.id} email={fixLengthText(user.email)} photo={user.photo}

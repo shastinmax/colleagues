@@ -1,8 +1,11 @@
-import {setLoading, setUsers, showNextUsers,} from "./usersReducer";
+import {setPositions} from "../form/form-reducer";
+
+import {setLoading, setUsers, showNextUsers,} from "./users-reducer";
 
 export type GlobalActionType = ReturnType<typeof setUsers>
     | ReturnType<typeof setLoading>
     | ReturnType<typeof showNextUsers>
+    | ReturnType<typeof setPositions>
 
 export type UserType = {
     id: string,

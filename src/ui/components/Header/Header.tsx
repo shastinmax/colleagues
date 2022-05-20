@@ -13,7 +13,7 @@ export const Header = () => (
                 <div className={s.header__wrapper}>
                     <NavLink className={s.header__wrapper_link}
                              to='/users'>Users</NavLink>
-                    <NavLink className={s.header__wrapper_link} to='/login'>Sing
+                    <NavLink className={s.header__wrapper_link} to='/form'>Sing
                         up</NavLink>
                 </div>
             </div>

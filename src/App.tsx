@@ -4,8 +4,8 @@ import './App.scss';
 import {HashRouter, Route, Routes} from "react-router-dom";
 
 import {PATH} from "./common/enums/patch";
-import {Preloader} from "./common/Preloader/Preloader";
 import {Banner} from "./ui/components/Banner/Banner";
+import {Form} from "./ui/components/Form/Form";
 import {Header} from "./ui/components/Header/Header";
 import {Users} from "./ui/components/Users/Users";
 
@@ -16,9 +16,9 @@ const App = () => (
             <Routes>
                 <Route path={PATH.BANNER} element={<Banner/>}/>
                 <Route path={PATH.USERS} element={<Users/>}/>
-                {/* <Route path='/login' element={<Login/>}/> */}
+                <Route path={PATH.FORM} element={<Form/>}/>
+                <Route path='/*' element={<div>ERROR</div>}/>
 
-                {/* <Route path='*' element={<Error/>}/> */}
             </Routes>
         </div>
     </HashRouter>
