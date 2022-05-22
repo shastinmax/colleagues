@@ -1,21 +1,26 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
-import { getPositions } from '../../../bll/reducers/form/form-reducer';
-import { selectPositions } from '../../../bll/selectors/selectors';
+import { addUser, getPositions, getToken } from '../../../bll/reducers/form/form-reducer';
+import { selectIsRedirect, selectPositions } from '../../../bll/selectors/selectors';
 import { useTypedDispatch } from '../../../bll/store';
 import { checkValidation } from '../../../common/checkValidation/checkValidation';
+import { PATH } from '../../../common/enums/patch';
 import { useAppSelector } from '../../../common/hook/useAppSelectorHook';
 
 import s from './Form.module.scss';
 
 export const Form = () => {
+  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const positions = useAppSelector(selectPositions);
+  const isRedirectValue = useAppSelector(selectIsRedirect);
   const [disable, setDisable] = useState(false);
   useEffect(() => {
     dispatch(getPositions());
+    dispatch(getToken());
   }, []);
 
   // @ts-ignore
@@ -24,13 +29,12 @@ export const Form = () => {
       name: '',
       email: '',
       phone: '',
-      position: 1,
+      position_id: 1,
       photo: '',
     },
     // validate: values => checkValidation(formik, values, setDisable),
     onSubmit: values => {
-      // eslint-disable-next-line no-debugger
-      console.log(values);
+      dispatch(addUser({ ...values, position_id: +values.position_id }));
     },
   });
   const onHandlerRadio = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +53,10 @@ export const Form = () => {
   //   formik.touched[value] && formik.errors[value] ? (
   //     <div className={s.form__error}>{formik.errors[value]}</div>
   //   ) : null;
-
+  if (isRedirectValue) {
+    navigate(`${PATH.USERS}`);
+  }
+  // @ts-ignore
   return (
     <div className="container">
       <h2 className="title">Working with POST request</h2>
@@ -94,7 +101,7 @@ export const Form = () => {
               <label key={el.id} className={s.form__label_checkBox}>
                 <input
                   required
-                  name="position"
+                  name="position_id"
                   type="radio"
                   onChange={onHandlerRadio}
                   className={s.form__input_checkBox}
@@ -104,7 +111,7 @@ export const Form = () => {
               </label>
             ))}
           </div>
-          <button type="submit">Sing up</button>
+
           <label
             className={`${s.label} ${
               formik.touched.photo && formik.errors.photo && s.form__input_error
@@ -124,6 +131,9 @@ export const Form = () => {
               <div className={s.form__error}>{formik.errors.photo}</div>
             ) : null}
           </label>
+          <button className={s.form__btn} type="submit">
+            Sing up
+          </button>
         </form>
       </div>
     </div>

@@ -9,7 +9,7 @@
   }
   &_checkBox{
     max-width: 380px;
-    margin: 0 auto;
+    margin: 0 auto 50px;
     text-align: start;
   }
 }
@@ -26,12 +26,13 @@
 .label {
   border: 1px solid #D0CFCF;
   border-radius: 4px;
-  display: inline-block;
+  display: block;
   text-align: left;
   padding: 10px 0;
   position: relative;
   width: 100%;
-  margin-bottom: 50px;
+  max-width: 380px;
+  margin: 0 auto 50px;
 }
 
 // error input style
@@ -62,4 +63,13 @@
   white-space: nowrap;
   opacity: .7;
   font-size: 13px;
+}
+
+.form__btn{
+  margin-bottom: 50px;
+  background: #B4B4B4;
+  width: 100px;
+  height: 34px;
+  border-radius: 80px;
+  border: none;
 }
