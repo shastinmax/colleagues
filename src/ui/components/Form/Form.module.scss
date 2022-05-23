@@ -1,26 +1,34 @@
-.form__wrapper{
+@import "src/common/styles/styles";
+
+.form__wrapper {
   text-align: center;
-  &_input{
+
+  &_input {
     display: block;
     padding-left: 15px;
     width: 380px;
     min-height: 50px;
-    margin:0 auto 50px;
+    margin: 0 auto 50px;
   }
-  &_checkBox{
+
+  &_checkBox {
     max-width: 380px;
     margin: 0 auto 50px;
     text-align: start;
   }
 }
-.form__input_title{
+
+.form__input_title {
   margin-bottom: 14px;
 }
-.form__label_checkBox{
+
+.form__label_checkBox {
   display: block;
-}.form__input_checkBox{
-   margin-right: 12px;
- }
+}
+
+.form__input_checkBox {
+  margin-right: 12px;
+}
 
 // style input file
 .label {
@@ -65,11 +73,26 @@
   font-size: 13px;
 }
 
-.form__btn{
+.form__btn {
   margin-bottom: 50px;
-  background: #B4B4B4;
+  background: $primary-color;
   width: 100px;
   height: 34px;
   border-radius: 80px;
+  border: none;
+}
+
+.wrapper__error {
+  position: relative;
+}
+
+.form__input_error {
+  position: absolute;
+  left: -180px;
+  top: 55px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #CB3D40;
   border: none;
 }

@@ -25,7 +25,7 @@ export const formApi = {
     return instance.get('positions');
   },
   addUser(value: AddUserType, token: string) {
-    return instance.post<AnswerUser>('user', value, {
+    return instance.post<AnswerUser>('users', value, {
       headers: {
         Token: token,
         'Content-Type': 'multipart/form-data',

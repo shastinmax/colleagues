@@ -32,7 +32,7 @@ export const Form = () => {
       position_id: 1,
       photo: '',
     },
-    // validate: values => checkValidation(formik, values, setDisable),
+    validate: values => checkValidation(formik, values, setDisable),
     onSubmit: values => {
       dispatch(addUser({ ...values, position_id: +values.position_id }));
     },
@@ -53,6 +53,8 @@ export const Form = () => {
   //   formik.touched[value] && formik.errors[value] ? (
   //     <div className={s.form__error}>{formik.errors[value]}</div>
   //   ) : null;
+  const isErrorChecking = (value: string) =>
+    formik.touched[value] && formik.errors[value];
   if (isRedirectValue) {
     navigate(`${PATH.USERS}`);
   }
@@ -62,18 +64,20 @@ export const Form = () => {
       <h2 className="title">Working with POST request</h2>
       <div className={s.form__wrapper}>
         <form onSubmit={formik.handleSubmit}>
-          <label>
+          <label className={s.wrapper__error}>
             <input
-              className={s.form__wrapper_input}
+              className={`${s.form__wrapper_input} ${
+                isErrorChecking('name') && s.form__input_error
+              }`}
               type="text"
               placeholder="Your name"
               name="name"
               onChange={formik.handleChange}
               value={formik.values.name}
             />
-            <div className="error">{formik.errors.name}</div>
+            <div className={s.form__input_error}>{formik.errors.name}</div>
           </label>
-          <label>
+          <label className={s.wrapper__error}>
             <input
               className={s.form__wrapper_input}
               type="email"
@@ -82,9 +86,9 @@ export const Form = () => {
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            <div className="error">{formik.errors.email}</div>
+            <div className={s.form__input_error}>{formik.errors.email}</div>
           </label>
-          <label>
+          <label className={s.wrapper__error}>
             <input
               className={s.form__wrapper_input}
               placeholder="Phone"
@@ -92,7 +96,7 @@ export const Form = () => {
               onChange={formik.handleChange}
               value={formik.values.phone}
             />
-            <div className="error">{formik.errors.phone}</div>
+            <div className={s.form__input_error}>{formik.errors.phone}</div>
           </label>
 
           <div className={s.form__wrapper_checkBox}>
