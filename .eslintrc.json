@@ -24,6 +24,9 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "react/button-has-type": "off",
+    "react/no-unescaped-entities": "off",
     "no-shadow": "off",
     "no-param-reassign": 0,
     "@typescript-eslint/no-unused-vars": "off",

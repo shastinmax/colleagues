@@ -13,7 +13,8 @@ export const checkValidation = (
   setDisable: (disable: boolean) => void,
 ) => {
   const errors: FormikErrorType = {};
-
+  // eslint-disable-next-line no-debugger
+  debugger;
   // email
   if (!values.email) {
     errors.email = 'Required';
@@ -27,7 +28,6 @@ export const checkValidation = (
   ) {
     errors.email = 'The email must be a valid email address';
   }
-  // name
   if (!values.name) {
     errors.name = 'Required';
   } else {
