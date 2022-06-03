@@ -3,19 +3,24 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import { addUser, getPositions, getToken } from '../../../bll/reducers/form/form-reducer';
+import { checkValidation } from '../../../common/checkValidation/checkValidation';
+import { PathNavigation } from '../../../common/enums/Navigation';
+import { useAppSelector } from '../../../common/hook/useAppSelectorHook';
+import { ModalError } from '../../../common/modalError/ModalError';
+import { addUser } from '../../../store/middlewares/form/addUser';
+import { getPositions } from '../../../store/middlewares/form/getPositions';
+import { getToken } from '../../../store/middlewares/form/getToken';
 import {
   selectErrorValue,
   selectInitialized,
   selectIsRedirect,
   selectPosition,
-} from '../../../bll/selectors/selectors';
-import { useTypedDispatch } from '../../../bll/store';
-import { checkValidation } from '../../../common/checkValidation/checkValidation';
-import { PATH } from '../../../common/enums/patch';
-import { useAppSelector } from '../../../common/hook/useAppSelectorHook';
+} from '../../../store/selectors/selectors';
+import { useTypedDispatch } from '../../../store/store';
 
 import s from './Form.module.scss';
+
+import preloader from 'assets/image/Preloader/Preloader.svg';
 
 export const Form = () => {
   const dispatch = useTypedDispatch();
@@ -32,8 +37,7 @@ export const Form = () => {
   const [disable, setDisable] = useState<boolean>(true);
 
   // formik
-  // @ts-ignore
-  const formik = useFormik({
+  const formik: any = useFormik({
     initialValues: {
       name: '',
       email: '',
@@ -43,7 +47,7 @@ export const Form = () => {
     },
     validate: values => checkValidation(formik, values, setDisable),
     onSubmit: data => {
-      dispatch(addUser({ ...data, position_id: +data.position_id }));
+      dispatch(addUser({ ...data, position_id: Number(data.position_id) }));
       setDisable(false);
       formik.resetForm();
     },
@@ -76,7 +80,7 @@ export const Form = () => {
   }, []);
 
   if (isRedirectValue) {
-    navigate(`${PATH.USERS}`);
+    navigate(`${PathNavigation.USERS}`);
   }
 
   return (
@@ -126,8 +130,7 @@ export const Form = () => {
 
         <div className={s.form__select_wrap}>
           {/* // loader active */}
-          {initialized && <img className="preloader" src={preloader} alt="preloader" />}
-
+          {initialized && <img className={s.preloader} src={preloader} alt="preloader" />}
           <p className={s.form__select_text}>Select your position</p>
 
           {positionDate.map(e => (

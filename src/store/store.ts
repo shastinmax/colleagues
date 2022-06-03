@@ -5,8 +5,9 @@ import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
 import { appReducer } from './reducers/app/app-reducer';
 import { formReducer } from './reducers/form/form-reducer';
-import { GlobalActionType } from './reducers/users/types';
 import { usersReducer } from './reducers/users/users-reducer';
+
+import { GlobalActionType } from 'types/globalTypeAction';
 
 const reducers = combineReducers({
   users: usersReducer,

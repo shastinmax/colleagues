@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux';
 
-import { usersApi } from '../../../api/api';
+import { usersApi } from '../../../api/user';
+import { GlobalActionType } from '../../../types/globalTypeAction';
 
-import { GlobalActionType, InitialStateType, UserType } from './types';
+import { InitialStateType, UserType } from './types';
 
 const initialState = {
   success: false,

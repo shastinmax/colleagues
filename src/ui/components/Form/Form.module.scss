@@ -1,3 +1,5 @@
+@import 'src/common/styles/styles';
+
 .form {
 
   &__box {
@@ -175,7 +177,17 @@
   opacity: .7;
   font-size: 13px;
 }
-
+.preloader{
+animation: spin 3s linear infinite;
+}
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 
 @media (max-width: 460px) {
   .form__input {
