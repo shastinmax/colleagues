@@ -1,4 +1,4 @@
-@import 'src/common/styles/styles';
+@import '../../../styles/styles';
 
 .form {
 
@@ -81,12 +81,13 @@
 
   // btn form disabled
   &__btn {
-    margin: 0 5px;
+    margin: 0 5px 50px;
     border: none;
     border-radius: 80px;
     background-color: $primary-color;
     padding: 4px 29px;
     color: $black-color;
+    cursor: pointer;
 
     &:disabled {
       cursor: auto;

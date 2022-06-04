@@ -3,7 +3,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-import { ModalError } from '../../../common/modalError/ModalError';
+import { Button } from '../../../common/Button/Button';
+import { ModalError } from '../../../common/ModalError/ModalError';
 import { PathNavigation } from '../../../enums/Navigation';
 import { useAppSelector } from '../../../hooks/useAppSelectorHook';
 import { addUser } from '../../../store/middlewares/form/addUser';
@@ -17,6 +18,8 @@ import {
 } from '../../../store/selectors/selectors';
 import { useTypedDispatch } from '../../../store/store';
 import { checkValidation } from '../../../utils/checkValidation/checkValidation';
+import { InputFile } from '../InputFile/InputFile';
+import { Position } from '../Position/Position';
 
 import s from './Form.module.scss';
 
@@ -34,7 +37,7 @@ export const Form = () => {
 
   const navigate = useNavigate();
 
-  const [disable, setDisable] = useState<boolean>(true);
+  const [isDisable, setIsDisable] = useState<boolean>(true);
 
   const formik: any = useFormik({
     initialValues: {
@@ -44,11 +47,11 @@ export const Form = () => {
       position_id: 1,
       photo: '',
     },
-    validate: values => checkValidation(formik, values, setDisable),
+    validate: values => checkValidation(formik, values, setIsDisable),
     onSubmit: data => {
       dispatch(addUser({ ...data, position_id: Number(data.position_id) }));
 
-      setDisable(false);
+      setIsDisable(false);
 
       formik.resetForm();
     },
@@ -124,44 +127,19 @@ export const Form = () => {
         <div className={s.form__select_wrap}>
           {initialized && <img className={s.preloader} src={preloader} alt="preloader" />}
           <p className={s.form__select_text}>Select your position</p>
-
-          {positions.map(({ id, name }) => (
-            <label key={id} className={s.form__select_item}>
-              <input
-                defaultChecked={formik.values.position_id === id}
-                onChange={onPositionChange}
-                required
-                type="radio"
-                className={s.form__radio}
-                value={id}
-                name="position_id"
-              />
-              <span className={s.form__check_style} />
-              {name}
-              {setFormError('position_id')}
-            </label>
-          ))}
-        </div>
-
-        <label
-          className={`${s.label} ${
-            formik.touched.photo && formik.errors.photo && s.form__input_error
-          } `}
-        >
-          <input
-            required
-            className="choose"
-            name="photo"
-            type="file"
-            onChange={onPhotoChange}
+          <Position
+            positions={positions}
+            onPositionChange={onPositionChange}
+            setFormError={setFormError}
+            positionId={formik.values.position_id}
           />
-          <span className={s.button}>Upload</span>
-          <span className={s.labelTwo}>Upload your photo</span>
-          {setFormError('photo')}
-        </label>
-        <button className={s.form__btn} disabled={disable} type="submit">
-          Sign up
-        </button>
+        </div>
+        <InputFile
+          onPhotoChange={onPhotoChange}
+          setFormError={setFormError}
+          hasError={hasError}
+        />
+        <Button type="submit" text="Sing up" isDisable={isDisable} />
       </form>
     </div>
   );
