@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { useAppSelector } from '../../../common/hook/useAppSelectorHook';
 import { Preloader } from '../../../common/Preloader/Preloader';
+import { useAppSelector } from '../../../hooks/useAppSelectorHook';
 import { getUsers, showNextUsers } from '../../../store/reducers/users/users-reducer';
 import {
   selectCount,

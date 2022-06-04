@@ -13,4 +13,4 @@ export const selectInitialized = (state: RootStateType) => state.app.initialized
 export const selectPosition = (state: RootStateType) => state.form.positions;
 
 // error
-export const selectErrorValue = (state: RootStateType) => state.app.error;
+export const selectErrorValue = (state: RootStateType) => state.app.errorMessage;

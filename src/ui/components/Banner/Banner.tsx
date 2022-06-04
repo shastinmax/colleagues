@@ -17,6 +17,7 @@ export const Banner = () => (
           building web interfaces with accessibility in mind. They should also be excited
           to learn, as the world of Front-End Development keeps evolving.
         </p>
+
         <div className={s.banner__wrapper_link}>
           <NavLink className={s.banner__link} to="/form">
             Sing up

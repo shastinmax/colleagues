@@ -1,4 +1,4 @@
-import { PathAdditionalEndpoint } from '../../common/enums/Additional_Endpoints';
+import { PathAdditionalEndpoint } from '../../enums/Additional_Endpoints';
 import { GetTokenType } from '../form/types';
 
 import { instance } from 'api/config';

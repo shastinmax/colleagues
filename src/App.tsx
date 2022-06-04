@@ -3,7 +3,7 @@ import React from 'react';
 import './App.scss';
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 
-import { PathNavigation } from './common/enums/Navigation';
+import { PathNavigation } from './enums/Navigation';
 import { Banner } from './ui/components/Banner/Banner';
 import { Form } from './ui/components/Form/Form';
 import { Header } from './ui/components/Header/Header';

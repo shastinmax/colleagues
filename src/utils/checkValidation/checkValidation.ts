@@ -1,20 +1,13 @@
 import { FormikProps } from 'formik';
 
-type FormikErrorType = {
-  email?: string;
-  name?: string;
-  phone?: string;
-  photo?: string;
-  position_id?: any;
-};
+import { FormikErrorType } from './types';
+
 export const checkValidation = (
   formik: FormikProps<FormikErrorType>,
   values: FormikErrorType,
   setDisable: (disable: boolean) => void,
 ) => {
   const errors: FormikErrorType = {};
-  // eslint-disable-next-line no-debugger
-  debugger;
   // email
   if (!values.email) {
     errors.email = 'Required';

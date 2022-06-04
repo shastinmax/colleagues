@@ -1,4 +1,4 @@
-import { PathAdditionalEndpoint } from '../../common/enums/Additional_Endpoints';
+import { PathAdditionalEndpoint } from '../../enums/Additional_Endpoints';
 import { UserType } from '../../store/reducers/users/types';
 import { instance } from '../config';
 
