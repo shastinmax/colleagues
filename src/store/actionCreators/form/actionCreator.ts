@@ -1,4 +1,4 @@
-import { InitialStateType, PositionType } from '../../reducers/form/types';
+import { PositionType } from '../../reducers/form/types';
 
 export const setPositions = (data: PositionType) =>
   ({
@@ -7,6 +7,7 @@ export const setPositions = (data: PositionType) =>
       data,
     },
   } as const);
+
 export const setToken = (token: string) =>
   ({
     type: 'FORM/SET-TOKEN',

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/useAppSelectorHook';
-import { selectErrorValue } from '../../store/selectors/selectors';
+import { selectErrorValue } from '../../store/selectors/errorSelector/errorSelector';
 
 import s from './modalError.module.scss';
 

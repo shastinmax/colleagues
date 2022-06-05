@@ -10,12 +10,10 @@ import { useAppSelector } from '../../../hooks/useAppSelectorHook';
 import { addUser } from '../../../store/middlewares/form/addUser';
 import { getPositions } from '../../../store/middlewares/form/getPositions';
 import { getToken } from '../../../store/middlewares/form/getToken';
-import {
-  selectErrorValue,
-  selectInitialized,
-  selectIsRedirect,
-  selectPosition,
-} from '../../../store/selectors/selectors';
+import { selectInitialized } from '../../../store/selectors/appSelector/appSelector';
+import { selectErrorValue } from '../../../store/selectors/errorSelector/errorSelector';
+import { selectPosition } from '../../../store/selectors/formSelector/formSelector';
+import { selectIsRedirect } from '../../../store/selectors/userSelector/userSelector';
 import { useTypedDispatch } from '../../../store/store';
 import { checkValidation } from '../../../utils/checkValidation/checkValidation';
 import { InputFile } from '../InputFile/InputFile';

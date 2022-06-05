@@ -3,14 +3,15 @@ import React, { useEffect } from 'react';
 import { Button } from '../../../common/Button/Button';
 import { Preloader } from '../../../common/Preloader/Preloader';
 import { useAppSelector } from '../../../hooks/useAppSelectorHook';
-import { getUsers, showNextUsers } from '../../../store/reducers/users/users-reducer';
+import { showNextUsers } from '../../../store/actionCreators/user/actionCreator';
+import { getUsers } from '../../../store/middlewares/user/getUsers';
+import { selectInitialized } from '../../../store/selectors/appSelector/appSelector';
 import {
   selectCount,
-  selectInitialized,
   selectPage,
   selectTotalPages,
   selectUsers,
-} from '../../../store/selectors/selectors';
+} from '../../../store/selectors/userSelector/userSelector';
 import { useTypedDispatch } from '../../../store/store';
 import { fixLengthText } from '../../../utils/fixLengthText';
 
