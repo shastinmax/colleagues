@@ -48,12 +48,10 @@ export const Form = () => {
       photo: '',
     },
     validate: values => checkValidation(formik, values, setIsDisable),
-    onSubmit: data => {
+    onSubmit: (data, { resetForm }) => {
       dispatch(addUser({ ...data, position_id: Number(data.position_id) }));
-
       setIsDisable(false);
-
-      formik.resetForm();
+      resetForm();
     },
   });
 
@@ -101,9 +99,7 @@ export const Form = () => {
 
           <label className={s.form__labelStyle_error}>
             <input
-              className={`${s.form__input} ${
-                formik.touched.email && formik.errors.email && s.form__input_error
-              } `}
+              className={`${s.form__input} ${hasError('email') && s.form__input_error} `}
               placeholder="Email"
               {...formik.getFieldProps('email')}
             />
@@ -112,9 +108,7 @@ export const Form = () => {
 
           <label className={`${s.form__label} ${s.form__labelStyle_error}`}>
             <input
-              className={`${s.form__input} ${
-                formik.touched.phone && formik.errors.phone && s.form__input_error
-              } `}
+              className={`${s.form__input} ${hasError('phone') && s.form__input_error} `}
               type="text"
               placeholder="Phone"
               {...formik.getFieldProps('phone')}

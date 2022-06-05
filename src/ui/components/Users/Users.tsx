@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { Button } from '../../../common/Button/Button';
 import { Preloader } from '../../../common/Preloader/Preloader';
 import { useAppSelector } from '../../../hooks/useAppSelectorHook';
 import { getUsers, showNextUsers } from '../../../store/reducers/users/users-reducer';
@@ -16,49 +17,48 @@ import { fixLengthText } from '../../../utils/fixLengthText';
 import { User } from './User/User';
 import s from './Users.module.scss';
 
+const INCREMENT_VALUE = 1;
+
 export const Users = () => {
   const dispatch = useTypedDispatch();
+
   const page = useAppSelector(selectPage);
   const count = useAppSelector(selectCount);
   const users = useAppSelector(selectUsers);
   const totalPage = useAppSelector(selectTotalPages);
   const initialized = useAppSelector(selectInitialized);
-  // const error = useAppSelector(selectErrorMessage);
 
   useEffect(() => {
     dispatch(getUsers(page, count));
-  }, [dispatch, page]);
+  }, [page]);
 
-  const onHandlerShowMore = () => {
-    const number = 1;
-    dispatch(showNextUsers(page + number));
+  const onNextPageClick = () => {
+    const numberPage = page + INCREMENT_VALUE;
+    dispatch(showNextUsers(numberPage));
   };
 
   return (
     <div className="container">
       {initialized && <Preloader />}
+
       <h1 className="title">Working with GET request</h1>
+
       <div className={s.users__wrapper}>
-        {users.map(user => (
+        {users.map(({ id, photo, phone, name, position, email }) => (
           <User
-            key={user.id}
-            email={fixLengthText(user.email)}
-            photo={user.photo}
-            phone={user.phone}
-            name={fixLengthText(user.name)}
-            position={user.position}
+            key={id}
+            email={fixLengthText(email)}
+            photo={photo}
+            phone={phone}
+            name={fixLengthText(name)}
+            position={position}
           />
         ))}
       </div>
+
       <div className={s.users__wrapperBtn}>
         {totalPage !== page && (
-          <button
-            type="button"
-            onClick={onHandlerShowMore}
-            className={s.users__wrapperBtn_btn}
-          >
-            Show more
-          </button>
+          <Button type="button" text="Show more" callback={onNextPageClick} />
         )}
       </div>
     </div>

@@ -1,14 +1,12 @@
 import React from 'react';
 
-import s from '../../ui/components/Form/Form.module.scss';
-
 import { ButtonPropsType } from './types';
 
 export const Button = (props: ButtonPropsType) => {
-  const { type, text, isDisable } = props;
+  const { type, text, isDisable, callback } = props;
 
   return (
-    <button className={s.form__btn} disabled={isDisable} type={type}>
+    <button onClick={callback} className="btn" disabled={isDisable} type={type}>
       {text}
     </button>
   );

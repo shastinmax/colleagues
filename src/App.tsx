@@ -11,15 +11,22 @@ import { Users } from './ui/components/Users/Users';
 
 import { PageNotFound } from 'ui/components/PageNotFound/PageNotFound';
 
+const ROUTES = [
+  { path: PathNavigation.BANNER, element: <Banner /> },
+  { path: PathNavigation.USERS, element: <Users /> },
+  { path: PathNavigation.FORM, element: <Form /> },
+  { path: PathNavigation.PAGE_NOT_FOUND, element: <PageNotFound /> },
+];
+
 const App = () => (
   <HashRouter>
     <div className="App">
       <Header />
+
       <Routes>
-        <Route path={PathNavigation.BANNER} element={<Banner />} />
-        <Route path={PathNavigation.USERS} element={<Users />} />
-        <Route path={PathNavigation.FORM} element={<Form />} />
-        <Route path={PathNavigation.PAGE_NOT_FOUND} element={<PageNotFound />} />
+        {ROUTES.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
         <Route path="/*" element={<Navigate to={PathNavigation.PAGE_NOT_FOUND} />} />
       </Routes>
     </div>
